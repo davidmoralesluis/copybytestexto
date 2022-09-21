@@ -1,11 +1,22 @@
-import java.io.File;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        CopyBytesTexto x=new CopyBytesTexto();
-        File fichero=new File(System.getProperty("user.dir")+"/src/main/java/texto1.txt");
+        File text1=new File(System.getProperty("user.dir")+"/src/main/java/texto1.txt");
+        File newtext=new File(System.getProperty("user.dir")+"/src/main/java/texto2.txt");
 
-        x.copyText(fichero);
+        FileInputStream leer=new FileInputStream(text1);
+        FileOutputStream escribir=new FileOutputStream(newtext,false);
+
+        int byteToByte;
+
+        while ((byteToByte=leer.read())!=-1){
+            escribir.write(byteToByte);
+        }
+
+        escribir.close();
+        leer.close();
+
     }
 }
